@@ -57,11 +57,12 @@ router.get('/:prodId', (req, res) => {
             'p.price',
             'p.quantity',
             'p.image',
+            'p.images',
             'p.id'])
-        .filter({"p.id": productId})
+        .filter({'p.id': productId})
         .get()
         .then(prod => {
-            if (prod.length > 0) {
+            if (prod) {
                 res.status(200).json(prod);
             } else {
                 res.json({message: `No product found with product id ${productId}`});
